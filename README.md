@@ -1,3 +1,4 @@
+Міграції
 use yunko_2000;
 
 create table hospitaldepartments
