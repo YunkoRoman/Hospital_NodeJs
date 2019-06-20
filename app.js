@@ -43,7 +43,7 @@ app.post('/authUser', AuthUser);
 app.post('/createComment', CreateComment);
 app.get('/allComments/:id', AllCommentToDocId);
 app.delete('/deleteComment', DeleteComment);
-app.put('/updateComment/:id', UpdateComment);
+app.put('/updateComment', UpdateComment);
 
 
 app.use('*', (req, res) => {

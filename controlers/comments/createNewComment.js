@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
         const insertedComments = await CommentModel.create({
             text,
             data:Data,
-            user_id: 2,
+            user_id: id,
             doctor_id
         });
 

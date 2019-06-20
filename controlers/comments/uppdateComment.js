@@ -5,8 +5,9 @@ module.exports = async (req, res) => {
     try {
         const UserModel = dataBase.getModel('users');
         const CommentModel = dataBase.getModel('comments');
-        const {text, data} = req.body;
-        const CommentId = req.params.id;
+        const {text, comment_id} = req.body;
+        const Data = new Date();
+        // const CommentId = req.params.id;
         const token = req.get('Authorization');
         if (!token) throw new Error('No token');
         const {id, name, surname} = tokenVerifikator.auth(token);
@@ -19,14 +20,14 @@ module.exports = async (req, res) => {
         });
         if (!UserIsRegister) throw new Error('Not valid User ');
         if (!CommentId) throw new Error('Not comment id');
-        if (!text || !data) throw new Error('Not update value')
+        if (!text) throw new Error('Not update value')
         const updatedComment = await CommentModel.update({
             text,
-            data,
+            data:Data
 
         }, {
             where:{
-                id:CommentId,
+                id:comment_id,
                 user_id: id
              }
             }
