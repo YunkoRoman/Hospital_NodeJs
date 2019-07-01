@@ -5,9 +5,9 @@ module.exports = async (req, res) => {
     try {
         const UserModel = dataBase.getModel('users');
         const CommentModel = dataBase.getModel('comments');
-        const {text, comment_id} = req.body;
+        const {text} = req.body;
         const Data = new Date();
-        // const CommentId = req.params.id;
+        const CommentId = req.params.id;
         const token = req.get('Authorization');
         if (!token) throw new Error('No token');
         const {id, name, surname} = tokenVerifikator.auth(token);
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
 
         }, {
             where:{
-                id:comment_id,
+                id:CommentId,
                 user_id: id
              }
             }

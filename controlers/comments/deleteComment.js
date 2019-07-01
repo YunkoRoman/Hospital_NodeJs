@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
             }
         });
         if (!UserIsRegister) throw new Error('Not valid User ');
-            if (!CommentId) throw new Error('Not comment id')
+            if (!CommentId) throw new Error('Not comment id');
         const insertedComments = await CommentModel.destroy({
                 where:{
                     id:CommentId,
