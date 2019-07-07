@@ -1,22 +1,22 @@
 const dataBase = require('../../dataBase').getInstance();
 module.exports = async (req, res) => {
     try {
-        const DoctorModel = dataBase.getModel('doctors');
         const DepartModel = dataBase.getModel('department');
-        const doctorId = req.params.id;
-        if(!doctorId || doctorId  < 1) throw new Error('Bad department ID')
+        const DoctorModel = dataBase.getModel('doctors');
+        const docToDepartId = req.params.id;
+        if(!docToDepartId || docToDepartId < 1) throw new Error('Bad department ID')
 
-        const Doctor = await DoctorModel.findOne({
+        const Doctors = await DoctorModel.findAll({
             include:[DepartModel],
             where:{
-                id: doctorId
+                department_id: docToDepartId
             }
         });
 
 
         res.json({
             success: true,
-            msg: Doctor
+            msg: Doctors
         });
     } catch (e) {
         console.log(e);

@@ -1,19 +1,12 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 const Departments  = require('./controlers/department/department');
 const AuthRouter  = require('./routes/authRouter');
 const DoctorsRouter = require('./routes/doctorRouter');
-const Doctors  = require('./controlers/doctors/docToid');
-const OneDoctor  = require('./controlers/doctors/OneDoctorToId');
-const CreateComment = require('./controlers/comments/createNewComment');
-const AllCommentToDocId = require('./controlers/comments/allCommentsToDoctorId');
-const DeleteComment = require('./controlers/comments/deleteComment');
-const UpdateComment = require('./controlers/comments/uppdateComment');
-
-const DoctorByName  = require('./controlers/doctors/doctorByName');
+const CommentRouter = require('./routes/commentRouter');
 const dataBase = require('./dataBase').getInstance();
 
 dataBase.setModels();
@@ -25,9 +18,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-
-
-
 app.use(cors());
 app.options('*', cors());
 
@@ -36,14 +26,8 @@ app.use(express.urlencoded({extended: true}));
 
 app.get('/', Departments);
 app.use('/auth', AuthRouter);
-app.use('/doctors', DoctorsRouter);
-app.get('/doctor/:id', Doctors);
-app.get('/OneDoctor/:id',OneDoctor );
-app.get('/doctorByName', DoctorByName);
-app.post('/createComment', CreateComment);
-app.get('/allComments/:id', AllCommentToDocId);
-app.delete('/deleteComment/:id', DeleteComment);
-app.put('/updateComment/:id', UpdateComment);
+app.use('/doctor', DoctorsRouter);
+app.use('/comment', CommentRouter);
 
 
 app.use('*', (req, res) => {

@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
         // })};
 
         const Doctor = await DoctorModel.findAll({
-            attributes:['name', 'surname'],
+            attributes:['id','name', 'surname'],
             include:[DepartModel],
             where:{
                 [Op.or]: [

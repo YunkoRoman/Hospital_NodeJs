@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
         });
         if (!UserIsRegister) throw new Error('Not valid User ');
         if (!CommentId) throw new Error('Not comment id');
-        if (!text) throw new Error('Not update value')
+        if (!text) throw new Error('Not update value');
         const updatedComment = await CommentModel.update({
             text,
             data:Data
